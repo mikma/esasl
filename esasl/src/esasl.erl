@@ -58,6 +58,8 @@
 	 server_init/3,
 	 client_init/3]).
 
+-include_lib("kernel/include/inet.hrl").
+
 -define(APP, esasl).
 
 %%-define(ENABLE_DEBUG, yes).
@@ -314,7 +316,16 @@ loop(Port, Queue) ->
 %%====================================================================
 
 test() ->
-    test(["xmpp", "skinner.hem.za.org", "/home/mikael/src/erlang/ejabberd/xmpp.keytab"]).
+    test(["xmpp", gethostname(), "xmpp.keytab"]).
+
+gethostname() ->
+    {ok, Name} = inet:gethostname(),
+    case inet:gethostbyname(Name) of
+	{ok, Hostent} when is_record(Hostent, hostent) ->
+	    Hostent#hostent.h_name;
+	_ ->
+	    Name
+    end.
 
 test([Service, Hostname, Key_tab]) when is_list(Service),
 					is_list(Hostname),
