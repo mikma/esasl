@@ -5,7 +5,6 @@
 	     esasl
 	    ]},
   {registered, []},
-%  {mod, {gssapi_app, []}},
   {env, []},
   {applications, [
 		  kernel,
