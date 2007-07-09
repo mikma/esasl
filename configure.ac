@@ -21,9 +21,6 @@ AC_ERLANG_PATH_ERL
 AC_ERLANG_SUBST_INSTALL_LIB_DIR
 AC_ERLANG_CHECK_LIB(kernel)
 AC_ERLANG_CHECK_LIB(stdlib)
-AC_ERLANG_CHECK_LIB(sasl)
-AC_ERLANG_CHECK_LIB(crypto)
-AC_ERLANG_CHECK_LIB(xmerl)
 
 AC_DEFUN([AC_ERLANG_LIB_VER],
 [AC_CACHE_CHECK([Erlang/OTP '$1' library version], [erlang_cv_lib_ver_$1],
@@ -35,12 +32,17 @@ AC_SUBST([ERLANG_LIB_VER_$1], [$erlang_cv_lib_ver_$1])
 
 AC_ERLANG_LIB_VER(kernel)
 AC_ERLANG_LIB_VER(stdlib)
-AC_ERLANG_LIB_VER(sasl)
-AC_ERLANG_LIB_VER(crypto)
+
+AC_CHECK_HEADER([ei.h],,[dnl
+    AC_MSG_ERROR([You need the ei.h header])])
+
+AC_CHECK_LIB([ei], [ei_decode_version], EI_LIBS="-lei", [dnl
+    AC_MSG_ERROR([You need the ei library])])
 
 PKG_CHECK_MODULES(GSASL, libgsasl >= 0.2.0)
 
 AC_SUBST(ERL_FLAGS)
+AC_SUBST(EI_LIBS)
 
 AC_CONFIG_FILES([
 		 Makefile

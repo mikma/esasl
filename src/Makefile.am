@@ -9,6 +9,5 @@ esasl_SRCS = \
 
 # gssapi_HDRS =
 
-AM_ERLCFLAGS = -I$(top_builddir)/include -I$(srcdir)    \
--I$(ERLANG_LIB_DIR_xmerl)/include +debug_info
+AM_ERLCFLAGS = +debug_info
 AM_ERL_FLAGS =
