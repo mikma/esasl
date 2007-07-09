@@ -1,0 +1,13 @@
+{application, esasl,
+ [{description, "Erlang SASL authentication"},
+  {vsn,"@VSN@"},
+  {modules, [
+	     esasl
+	    ]},
+  {registered, []},
+%  {mod, {gssapi_app, []}},
+  {env, []},
+  {applications, [
+		  kernel,
+		  stdlib
+		  ]}]}.
