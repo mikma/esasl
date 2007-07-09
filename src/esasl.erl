@@ -1,7 +1,7 @@
 %%%-------------------------------------------------------------------
 %%% File    : gsasl.erl
 %%% Author  : Mikael Magnusson <mikael@skinner.hem.za.org>
-%%% Description : 
+%%% Description : SASL authentication library
 %%%
 %%% Created : 23 May 2007 by Mikael Magnusson <mikael@skinner.hem.za.org>
 %%%-------------------------------------------------------------------
@@ -60,7 +60,7 @@
 
 -define(APP, esasl).
 
--define(ENABLE_DEBUG, yes).
+%%-define(ENABLE_DEBUG, yes).
 
 -ifdef(ENABLE_DEBUG).
 -define(INFO, io:format).
@@ -128,7 +128,7 @@ stop(Server_ref) ->
 server_start(Server_ref, Mech, Service, Host) when is_list(Mech),
 						   is_list(Service),
 						   is_list(Host) ->
-    Pid = whereis(Server_ref),
+    Pid = lookup_server(Server_ref),
     case call_port(Pid, {start, {server, Mech, Service, Host}}) of
 	{ok, Ref} ->
 	    {ok, {Pid, Ref}};
@@ -150,7 +150,7 @@ server_start(Server_ref, Mech, Service, Host) when is_list(Mech),
 client_start(Server_ref, Mech, Service, Host) when is_list(Mech),
 						   is_list(Service),
 						   is_list(Host) ->
-    Pid = whereis(Server_ref),
+    Pid = lookup_server(Server_ref),
     case call_port(Pid, {start, {client, Mech, Service, Host}}) of
 	{ok, Ref} ->
 	    {ok, {Pid, Ref}};
@@ -227,6 +227,12 @@ mechlist(Server_ref, Mode) ->
     end.
 
 %% Internal functions
+
+lookup_server(Server_ref) ->
+    if
+	is_pid(Server_ref) -> Server_ref;
+	is_atom(Server_ref) -> whereis(Server_ref)
+    end.
 
 call_port(Pid, Msg) ->
     ?INFO("call_port ~p~n", [Msg]),
