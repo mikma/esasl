@@ -46,8 +46,9 @@ AC_SUBST(EI_LIBS)
 
 AC_CONFIG_FILES([
 		 Makefile
-		 c_src/Makefile
-		 src/Makefile
+		 esasl/Makefile
+		 esasl/c_src/Makefile
+		 esasl/src/Makefile
 		])
 
 AC_OUTPUT
