@@ -1,10 +1,12 @@
-libsubdir = $(ERLANG_INSTALL_LIB_DIR)/$(OPT_APP)-$($(OPT_APP)_VSN)
+libsubdir = $(ERLANG_INSTALL_LIB_DIR)/$(OTP_APP)-$($(OTP_APP)_VSN)
 bindir = $(libsubdir)/bin
 ebindir = $(libsubdir)/ebin
 incdir = $(libsubdir)/include
 
-ebin_DATA = $(OPT_APP:=.boot)
-EXTRA_DIST = ../src/$(OPT_APP:=.rel.in)
-CLEANFILES = $(OPT_APP:=.boot) $(OPT_APP:=.rel) $(OPT_APP:=.script)
+ebin_DATA = $(OTP_RELEASES:=.boot) $(OTP_RELEASES:=.rel)	\
+$(OTP_RELEASES:=.script)
+EXTRA_DIST = $(OTP_RELEASES:=.rel.in)
+CLEANFILES = $(OTP_RELEASES:=.boot) $(OTP_RELEASES:=.rel)	\
+$(OTP_RELEASES:=.script)
 
 include $(top_srcdir)/rules.mk

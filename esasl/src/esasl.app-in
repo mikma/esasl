@@ -1,6 +1,6 @@
 {application, esasl,
  [{description, "Erlang SASL authentication"},
-  {vsn,"@VSN@"},
+  {vsn,"@esasl_VSN@"},
   {modules, [
 	     esasl
 	    ]},

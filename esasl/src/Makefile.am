@@ -1,11 +1,12 @@
 include $(top_srcdir)/app.mk
 
-OPT_APP = esasl
+OTP_APP = esasl
 
 esasl_VSN = $(VERSION)
 
 esasl_SRCS = \
-	esasl.erl
+	esasl.erl \
+	eldap_expr.erl
 
 # gssapi_HDRS =
 
