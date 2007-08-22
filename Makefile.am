@@ -1,5 +1,7 @@
 SUBDIRS = esasl
 
+EXTRA_DIST = bootstrap
+
 AM_ERL_FLAGS = -pa esasl/ebin
 
 check:
