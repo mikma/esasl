@@ -4,6 +4,8 @@ EXTRA_DIST = bootstrap
 
 AM_ERL_FLAGS = -pa esasl/ebin
 
+ACLOCAL_AMFLAGS = -I m4
+
 check:
 	$(ERL) $(AM_ERL_FLAGS) $(ERLFLAGS) -noshell -name esasl -run esasl test -s init stop
 
