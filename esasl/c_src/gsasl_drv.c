@@ -478,8 +478,6 @@ static int mechlist(char *buf, int index, ei_x_buff *presult)
 
     do {
 	char *list = NULL;
-	long dummy;
-	int res;
 	char mode[MAXATOMLEN];
 
 	if (ei_decode_atom(buf, &index, mode)) return 42;
