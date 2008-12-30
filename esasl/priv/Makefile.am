@@ -1,3 +1,5 @@
+VPATH = $(top_srcdir)/esasl/c_src
+
 AM_CFLAGS = -Wall -g
 AM_CPPFLAGS = $(GSASL_CFLAGS)
 

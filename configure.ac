@@ -57,7 +57,7 @@ AC_SUBST(EI_LIBS)
 AC_CONFIG_FILES([
 		 Makefile
 		 esasl/Makefile
-		 esasl/c_src/Makefile
+		 esasl/priv/Makefile
 		 esasl/src/Makefile
 		])
 
