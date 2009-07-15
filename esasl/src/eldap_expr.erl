@@ -8,7 +8,7 @@
 test() ->
     test("").
 
-test(Ccname) ->
+test(_Ccname) ->
 %%     Pid = gsasl:start("", Ccname),
     Host = "mulder.hem.za.org",
     {ok, Handle} = topen_bind(Host),
@@ -36,7 +36,7 @@ do_open_bind(Host, LogFun, Options) ->
     {eldap:sasl_bind(Handle, Options),
      Handle}.
 
-debug(t) -> fun(L,S,A) -> io:format("--- " ++ S, A) end;
+debug(t) -> fun(_L,S,A) -> io:format("--- " ++ S, A) end;
 debug(1) -> fun(L,S,A) when L =< 1 -> io:format("--- " ++ S, A) end;
 debug(2) -> fun(L,S,A) when L =< 2 -> io:format("--- " ++ S, A) end;
 debug(f) -> false.
