@@ -575,8 +575,10 @@ int main(int argc, char *argv[])
 	if (res)
 	    return res;
 
-	write_cmd(&result);
-	ei_x_free(&result);
+	if ( result.buff != NULL ) {
+	    write_cmd(&result);
+	    ei_x_free(&result);
+	}
 
 	size = BUF_SIZE;
     }

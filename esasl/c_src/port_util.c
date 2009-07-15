@@ -49,6 +49,9 @@ int write_cmd(ei_x_buff *buff)
 {
     byte li;
 
+    if ( buff->buff == NULL )
+      return -1;
+
     li = (buff->index >> 8) & 0xff;
     write_exact(&li, 1);
     li = buff->index & 0xff;
