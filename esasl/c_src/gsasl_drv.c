@@ -33,8 +33,6 @@
 #include "port_util.h"
 
 #define MAX_SESSIONS 128
-#define MECH "GSSAPI"
-/* #define MECH "ANONYMOUS" */
 #define BUF_SIZE 512 
 
 #define ENCODE_ERROR(err)				\

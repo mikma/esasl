@@ -49,7 +49,7 @@ int write_cmd(ei_x_buff *buff)
 {
     byte li;
 
-    li = (buff->index >> 8) & 0xff; 
+    li = (buff->index >> 8) & 0xff;
     write_exact(&li, 1);
     li = buff->index & 0xff;
     write_exact(&li, 1);

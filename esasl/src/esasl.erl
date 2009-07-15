@@ -283,7 +283,7 @@ loop(Port, Queue) ->
 %% 		    Res = link(Caller),
 %% 		    ?DEBUG("link ~p~n", [Res])
 %% 	    end,
-		    
+
 	    erlang:port_command(Port, term_to_binary(Msg)),
 	    Queue1 = Queue ++ [{Caller, Msg, From}],
 	    loop(Port, Queue1);
