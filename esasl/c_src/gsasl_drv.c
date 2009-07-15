@@ -353,6 +353,32 @@ error:
     return 0;
 }
 
+static int str_error(char *buf, int index, ei_x_buff *presult)
+{
+    ei_x_buff result = *presult;
+    /* {str_error, Err} */
+
+    do {
+	long err = 0;
+	const char *str;
+
+	if (ei_decode_long(buf, &index, &err)) return 30;
+
+	str = gsasl_strerror(err);
+
+	if (str) {
+	    if (ei_x_encode_atom(&result, "ok") ||
+		ei_x_encode_string(&result, str)) return 9;
+	} else {
+	    if (ei_x_encode_atom(&result, "error") ||
+		ei_x_encode_atom(&result, "not_found")) return 9;
+	}
+    }while(0);
+
+    *presult = result;
+    return 0;
+}
+
 static int property_set(char *buf, int index, ei_x_buff *presult)
 {
     ei_x_buff result = *presult;
@@ -503,6 +529,7 @@ struct func_info g_entries[] = {
     { "start", start },
     { "step", step },
     { "property_get", property_get },
+    { "str_error", str_error },
     { "property_set", property_set },
     { "finish", finish },
     { "debug", debug },

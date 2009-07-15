@@ -46,6 +46,7 @@
 	 finish/1,
 	 step/2,
 	 property_get/2,
+	 str_error/2,
 	 property_set/3,
 	 mechlist/2]).
 
@@ -192,6 +193,12 @@ property_get({Pid, Instance}, Name) when is_pid(Pid),
 					 is_integer(Instance),
 					 is_atom(Name) ->
     call_port(Pid, {property_get, {Instance, Name}}).
+
+str_error({Pid, _Instance}, Err) when is_pid(Pid),
+				      is_integer(Err) ->
+    call_port(Pid, {str_error, Err});
+str_error(Server_ref, Err) when is_integer(Err) ->
+    call_port(Server_ref, {str_error, Err}).
 
 %%--------------------------------------------------------------------
 %% Function: property_set(Instance, Name, Value)
