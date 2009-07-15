@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Force automake 1.9. Version 1.10 is unsupported.
-ver=1.9
-
-aclocal-${ver} -I m4
+aclocal -I m4
 autoconf
-automake-${ver} -a -c
+automake -a -c
