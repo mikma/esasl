@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if ! test -e config; then
+    mkdir config
+fi
+
+# Clean up previour run
+rm -f aclocal.m4
+
 aclocal -I m4
 autoconf
 automake -a -c
