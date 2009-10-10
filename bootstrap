@@ -4,8 +4,8 @@ if ! test -e config; then
     mkdir config
 fi
 
-# Clean up previour run
-rm -f aclocal.m4
+# Clean up previous run
+rm -f aclocal.m4 config/depcomp config/install-sh config/missing configure Makefile.in esasl/Makefile.in esasl/priv/Makefile.in esasl/src/Makefile.in
 
 aclocal -I m4
 autoconf
