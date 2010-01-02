@@ -1,0 +1,14 @@
+.deps
+aclocal.m4
+autom4te.cache
+config.log
+config.status
+config
+configure
+esasl/ebin
+esasl/src/esasl.app
+gsasl_drv
+Makefile
+Makefile.in
+*.beam
+*.o
