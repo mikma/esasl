@@ -43,16 +43,10 @@ AC_ERLANG_CHECK_LIB(stdlib)
 AC_ERLANG_LIB_VER(kernel)
 AC_ERLANG_LIB_VER(stdlib)
 
-AC_CHECK_HEADER([ei.h],,[dnl
-    AC_MSG_ERROR([You need the ei.h header])])
-
-AC_CHECK_LIB([ei], [ei_decode_version], EI_LIBS="-lei", [dnl
-    AC_MSG_ERROR([You need the ei library])])
-
+ERLANG_CHECK_EI
 PKG_CHECK_MODULES(GSASL, libgsasl >= 0.2.0)
 
 AC_SUBST(ERL_FLAGS)
-AC_SUBST(EI_LIBS)
 
 AC_CONFIG_FILES([
 		 Makefile
