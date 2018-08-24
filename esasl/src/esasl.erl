@@ -313,9 +313,9 @@ loop(Port, Queue) ->
 	    erlang:port_close(Port),
 	    exit(normal);
 	Term ->
-	    ?ERROR("Unhandled term ~p~n", [Term])
-    end,
-    loop(Port, Queue).
+	    ?ERROR("Unhandled term ~p~n", [Term]),
+	    loop(Port, Queue)
+    end.
 
 
 %%====================================================================
